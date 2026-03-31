@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,600;0,700;0,800;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    /* ── Soft gradient palette inspired by AI Student Assistant screenshot ── */
+    /* Lavender → Sky Blue → Blush Pink */
+    --bg-from:    250 80% 96%;   /* soft lavender */
+    --bg-mid:     210 80% 94%;   /* sky blue      */
+    --bg-to:      340 60% 94%;   /* blush pink    */
+
+    --background: 250 40% 97%;
+    --foreground: 240 30% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 30% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 30% 18%;
+
+    /* Primary: deep indigo/violet from the "Ask" button in screenshot */
+    --primary: 251 75% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 250 40% 95%;
+    --secondary-foreground: 240 30% 30%;
+
+    --muted: 240 20% 93%;
+    --muted-foreground: 240 15% 55%;
+
+    --accent: 199 90% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 20% 88%;
+    --input: 240 20% 88%;
+    --ring: 251 75% 56%;
+    --radius: 1rem;
+
+    /* Sidebar — clean white/lavender light */
+    --sidebar-background: 250 30% 99%;
+    --sidebar-foreground: 240 30% 35%;
+    --sidebar-primary: 251 75% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 250 60% 97%;
+    --sidebar-accent-foreground: 240 30% 20%;
+    --sidebar-border: 248 20% 91%;
+    --sidebar-ring: 251 75% 56%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+}
+
+/* ─── KEYFRAMES ───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes blobShift {
+  0%,100% { border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; transform: scale(1) rotate(0deg); }
+  33%      { border-radius: 40% 60% 70% 30% / 50% 55% 45% 50%; transform: scale(1.05) rotate(3deg); }
+  66%      { border-radius: 55% 45% 35% 65% / 40% 60% 40% 60%; transform: scale(0.97) rotate(-2deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes countUp {
+  from { opacity:0; transform: translateY(8px) scale(0.85); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(139,92,246,0.4); }
+  70%  { box-shadow: 0 0 0 14px rgba(139,92,246,0); }
+  100% { box-shadow: 0 0 0 0 rgba(139,92,246,0); }
+}
+
+/* ─── UTILITY CLASSES ─────────────────────────────────── */
+.animate-fade-up    { animation: fadeUp 0.5s cubic-bezier(.4,0,.2,1) forwards; }
+.animate-fade-in    { animation: fadeIn 0.4s ease forwards; }
+@keyframes adPopIn {
+  from { transform: scale(0.7) translateY(20px); opacity: 0; }
+  to   { transform: scale(1)   translateY(0);    opacity: 1; }
+}
+.animate-scale-in   { animation: scaleIn 0.4s cubic-bezier(.34,1.56,.64,1) forwards; }
+.animate-slide-left { animation: slideLeft 0.4s ease forwards; }
+.animate-float      { animation: float 5s ease-in-out infinite; }
+.animate-blob       { animation: blobShift 9s ease-in-out infinite; }
+.animate-count-up   { animation: countUp 0.5s cubic-bezier(.34,1.56,.64,1) forwards; }
+.animate-spin-slow  { animation: spin-slow 20s linear infinite; }
+
+.stagger-1 { animation-delay: 0.06s; }
+.stagger-2 { animation-delay: 0.12s; }
+.stagger-3 { animation-delay: 0.18s; }
+.stagger-4 { animation-delay: 0.24s; }
+.stagger-5 { animation-delay: 0.30s; }
+.stagger-6 { animation-delay: 0.36s; }
+
+/* ─── PAGE BACKGROUND ─────────────────────────────────── */
+.app-bg {
+  background: linear-gradient(135deg,
+    hsl(var(--bg-from)) 0%,
+    hsl(var(--bg-mid))  45%,
+    hsl(var(--bg-to))   100%);
+  background-size: 300% 300%;
+  animation: gradientShift 14s ease infinite;
+}
+
+/* ─── LOGIN SPECIFIC ──────────────────────────────────── */
+.login-bg {
+  background: linear-gradient(135deg,
+    hsl(250 80% 96%) 0%,
+    hsl(210 80% 94%) 40%,
+    hsl(195 75% 92%) 65%,
+    hsl(340 60% 94%) 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+
+.login-blob {
+  position: absolute;
+  filter: blur(72px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.login-card {
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.85);
+  box-shadow:
+    0 4px 6px -1px rgba(139,92,246,0.04),
+    0 20px 60px -10px rgba(139,92,246,0.12),
+    0 0 0 1px rgba(255,255,255,0.6) inset;
+}
+
+/* ─── COMPONENTS ──────────────────────────────────────── */
+@layer components {
+
+  .glass-card {
+    @apply bg-white/90 border border-white/80 rounded-2xl;
+    box-shadow: 0 4px 24px rgba(139,92,246,0.07), 0 1px 3px rgba(139,92,246,0.05);
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+    backdrop-filter: blur(12px);
+  }
+  .glass-card:hover {
+    box-shadow: 0 12px 40px rgba(139,92,246,0.14), 0 4px 12px rgba(139,92,246,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* Sidebar — clean white with soft lavender tint */
+  .gradient-sidebar {
+    background: linear-gradient(175deg,
+      hsl(250 30% 99%) 0%,
+      hsl(248 25% 97%) 100%);
+    border-right: 1px solid hsl(248 20% 91%);
+    box-shadow: 2px 0 20px rgba(139,92,246,0.06);
+  }
+
+  /* Login / hero gradient */
+  .gradient-primary {
+    background: linear-gradient(135deg,
+      hsl(251 75% 56%) 0%,
+      hsl(220 80% 60%) 100%);
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply glass-card relative overflow-hidden p-5;
+  }
+
+  /* Nav active */
+  .nav-active {
+    background: linear-gradient(90deg, hsl(251 75% 56%), hsl(220 80% 60%));
+    box-shadow: 0 4px 16px rgba(139,92,246,0.32);
+  }
+
+  /* Pill */
+  .pill { @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold; }
+
+  /* Section label */
+  .section-title {
+    @apply text-[10px] font-bold uppercase tracking-widest px-3 mb-1.5;
+    color: rgba(200,195,230,0.4);
+  }
+
+  /* Test interface */
+  .q-answered     { @apply bg-emerald-500 text-white; }
+  .q-not-answered { @apply bg-rose-500 text-white; }
+  .q-marked       { @apply bg-violet-500 text-white; }
+  .q-not-visited  { @apply bg-slate-200 text-slate-500; }
+  .q-marked-ans   { @apply bg-violet-500 text-white ring-2 ring-emerald-400; }
+
+  /* Ticker */
+  .ticker-wrap { overflow: hidden; white-space: nowrap; }
+  .ticker-track {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+
+  /* Shimmer */
+  .shimmer {
+    background: linear-gradient(90deg, #f5f3ff 25%, #ede9fe 50%, #f5f3ff 75%);
+    background-size: 200% auto;
+    animation: shimmer 1.5s linear infinite;
+    border-radius: 0.5rem;
+  }
+
+  /* Card accent bottom line */
+  .card-accent-bottom::after {
+    content:'';
+    position:absolute;
+    bottom:0; left:0; right:0; height:2.5px;
+    background: linear-gradient(90deg, hsl(251 75% 56%), hsl(199 90% 55%));
+    border-radius: 0 0 1rem 1rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .card-accent-bottom:hover::after { opacity: 1; }
+}
+
+/* ─── SCROLLBAR ───────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: hsl(251 50% 80%);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: hsl(251 75% 56%); }
+
+/* ─── RESPONSIVE ──────────────────────────────────────── */
+
+/* Dialogs always fit the viewport */
+@media (max-width:1024px) {
+  [data-radix-dialog-content] {
+    max-width: calc(100vw - 1.5rem) !important;
+    max-height: 92dvh !important;
+  }
+}
+
+/* Touch-friendly tap targets on mobile */
+@media (max-width:768px) {
+  button, [role="button"] { min-height: 36px; }
+
+  /* Prevent table overflow on small screens */
+  .overflow-x-auto { -webkit-overflow-scrolling: touch; }
+
+  /* Ensure text doesn't overflow cards */
+  .truncate { max-width: 100%; }
+
+  /* Smaller padding in cards on mobile */
+  .stat-card { @apply p-4; }
+}
+
+/* Extra-small screen (phones < 400px) */
+@media (max-width:400px) {
+  /* Make headers smaller to avoid overflow */
+  h1.text-2xl { font-size: 1.25rem !important; }
+
+  /* Compress paddings further */
+  .p-4 { padding: 0.75rem !important; }
+  .p-6 { padding: 1rem !important; }
+}
+
+/* xs breakpoint helper (480px) — used in grid cols for 2-column on small phones */
+@media (min-width: 480px) {
+  .xs\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Ensure the main content scrolls naturally on iOS */
+html, body { -webkit-overflow-scrolling: touch; }
+
+/* Prevent horizontal scroll caused by dialogs */
+body { overflow-x: hidden; }
+
+/* Fix dialog z-index stacking on mobile sidebar */
+[data-radix-dialog-overlay] { z-index: 60 !important; }
+[data-radix-dialog-content] { z-index: 61 !important; }
